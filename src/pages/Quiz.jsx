@@ -1,5 +1,6 @@
 import Layout from "../components/Layout";
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const set1 = [
   {
@@ -214,7 +215,7 @@ const set1 = [
       "Câu 20: Một trong những xu hướng biến đổi của giai cấp công nhân hiện nay là gì?",
     options: [
       "Giảm chất lượng lao động.",
-      "Xu hướng \"trí tuệ hóa\" tăng nhanh.",
+      'Xu hướng "trí tuệ hóa" tăng nhanh.',
       "Giảm số lượng.",
       "Tăng cường lao động thủ công.",
     ],
@@ -272,6 +273,17 @@ const set1 = [
       "Học thuyết hình thái kinh tế - xã hội.",
       "Học thuyết tiến hóa.",
       "Học thuyết dân chủ.",
+    ],
+    answer: 1,
+  },
+  {
+    question:
+      "Câu 26: Chủ nghĩa xã hội khoa học có vai trò gì đối với sự phát triển của xã hội hiện đại?",
+    options: [
+      "Chỉ mang tính lý thuyết, không thực tiễn.",
+      "Định hướng cho sự phát triển tiến bộ, công bằng và dân chủ.",
+      "Chỉ áp dụng cho các nước phát triển.",
+      "Không ảnh hưởng đến xã hội hiện đại.",
     ],
     answer: 1,
   },
@@ -342,8 +354,7 @@ const set2 = [
     answer: 1,
   },
   {
-    question:
-      "Câu 8: Dân chủ, về bản chất, theo chủ nghĩa Mác – Lênin là gì?",
+    question: "Câu 8: Dân chủ, về bản chất, theo chủ nghĩa Mác – Lênin là gì?",
     options: [
       "Hình thức chính quyền quân chủ",
       "Quyền lực thực sự của nhân dân",
@@ -445,8 +456,7 @@ const set2 = [
     answer: 1,
   },
   {
-    question:
-      "Câu 18: Bản chất của dân chủ tư sản theo Mác – Lênin là gì?",
+    question: "Câu 18: Bản chất của dân chủ tư sản theo Mác – Lênin là gì?",
     options: [
       "Một nền dân chủ toàn dân",
       "Một bước lùi của nhân loại",
@@ -473,8 +483,7 @@ const set2 = [
     answer: 2,
   },
   {
-    question:
-      "Câu 21: Nguyên tắc cơ bản của dân chủ xã hội chủ nghĩa là gì?",
+    question: "Câu 21: Nguyên tắc cơ bản của dân chủ xã hội chủ nghĩa là gì?",
     options: [
       "Tập quyền tuyệt đối",
       "Không ngừng mở rộng dân chủ",
@@ -526,9 +535,21 @@ const set2 = [
     ],
     answer: 2,
   },
+  {
+    question:
+      "Câu 26: Dân chủ xã hội chủ nghĩa khác dân chủ tư sản ở điểm nào?",
+    options: [
+      "Quyền lực thuộc về thiểu số.",
+      "Không có pháp luật.",
+      "Quyền lực thực sự thuộc về nhân dân lao động.",
+      "Chỉ dành cho tầng lớp giàu có.",
+    ],
+    answer: 2,
+  },
 ];
 
 function Quiz() {
+  const navigate = useNavigate();
   const [activeSet, setActiveSet] = useState(1);
   const questions = useMemo(() => (activeSet === 1 ? set1 : set2), [activeSet]);
   const [step, setStep] = useState(0);
@@ -536,7 +557,9 @@ function Quiz() {
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
   const [wrongAnswers, setWrongAnswers] = useState([]);
-  const [selections, setSelections] = useState(Array((activeSet === 1 ? set1 : set2).length).fill(null));
+  const [selections, setSelections] = useState(
+    Array((activeSet === 1 ? set1 : set2).length).fill(null)
+  );
 
   const resetQuiz = (setNo = activeSet) => {
     setActiveSet(setNo);
@@ -572,12 +595,24 @@ function Quiz() {
           correct: q.options[q.answer],
         }))
         .filter((x) => x.chosenIdx !== x.correctIdx);
-      setWrongAnswers(computedWrong.map(({ question, chosen, correct }) => ({ question, chosen, correct })));
+      setWrongAnswers(
+        computedWrong.map(({ question, chosen, correct }) => ({
+          question,
+          chosen,
+          correct,
+        }))
+      );
       setScore(questions.length - computedWrong.length);
       try {
         localStorage.setItem(
           `mln-quiz-wrong-set-${activeSet}`,
-          JSON.stringify(computedWrong.map(({ question, chosen, correct }) => ({ question, chosen, correct })))
+          JSON.stringify(
+            computedWrong.map(({ question, chosen, correct }) => ({
+              question,
+              chosen,
+              correct,
+            }))
+          )
         );
       } catch {}
       setShowResult(true);
@@ -593,115 +628,177 @@ function Quiz() {
   };
 
   const currentScore = useMemo(() => {
-    return questions.reduce((acc, q, i) => (selections[i] === q.answer ? acc + 1 : acc), 0);
+    return questions.reduce(
+      (acc, q, i) => (selections[i] === q.answer ? acc + 1 : acc),
+      0
+    );
   }, [selections, questions]);
 
   return (
     <Layout>
-      <div className="flex flex-col items-center justify-center min-h-[60vh]">
-        <h1 className="text-3xl font-bold mb-2 text-blue-700">Quiz MLN131</h1>
-        <div className="flex gap-3 mb-6">
+      <div className="flex flex-col items-center justify-center min-h-[80vh] bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
+        {/* Top navigation buttons */}
+        <div className="flex w-full max-w-2xl justify-between mb-6 mt-5">
           <button
-            className={`px-4 py-2 rounded-full border ${
+            className="flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-blue-700 font-bold shadow-lg hover:bg-blue-50 transition"
+            onClick={() => navigate("/")}
+          >
+            Quay lại
+          </button>
+          <button
+            className="flex items-center gap-2 px-5 py-3 rounded-xl bg-green-500 text-white font-bold shadow-lg hover:bg-green-600 transition"
+            onClick={() => navigate("/learn")}
+          >
+            Học bài
+          </button>
+        </div>
+        <h1 className="text-5xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-purple-700 to-pink-600 drop-shadow-lg tracking-tight">
+          Quiz MLN131
+        </h1>
+        <div className="flex gap-6 mb-10">
+          <button
+            className={`px-6 py-3 rounded-xl border-2 text-lg font-bold shadow-lg transition-all ${
               activeSet === 1
-                ? "bg-blue-600 text-white border-blue-600"
-                : "bg-white text-blue-700 border-blue-300"
+                ? "bg-blue-600 text-white border-blue-600 scale-105"
+                : "bg-white text-blue-700 border-blue-300 hover:bg-blue-50"
             }`}
             onClick={() => resetQuiz(1)}
           >
-            Bộ 1 (25 câu)
+            Bộ 1 ({set1.length} câu)
           </button>
           <button
-            className={`px-4 py-2 rounded-full border ${
+            className={`px-6 py-3 rounded-xl border-2 text-lg font-bold shadow-lg transition-all ${
               activeSet === 2
-                ? "bg-blue-600 text-white border-blue-600"
-                : "bg-white text-blue-700 border-blue-300"
+                ? "bg-blue-600 text-white border-blue-600 scale-105"
+                : "bg-white text-blue-700 border-blue-300 hover:bg-blue-50"
             }`}
             onClick={() => resetQuiz(2)}
           >
-            Bộ 2 (25 câu)
+            Bộ 2 ({set2.length} câu)
           </button>
         </div>
         {!showResult ? (
-          <div className="w-full max-w-xl bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-2xl shadow-lg p-8">
-            <div className="flex items-center justify-between mb-2 text-sm text-gray-600">
-              <span>Bộ {activeSet}</span>
+          <div className="w-full max-w-2xl bg-white/80 rounded-3xl shadow-2xl p-12 border border-blue-200 flex flex-col items-center">
+            <div className="flex items-center justify-between w-full mb-6 text-lg text-gray-700 font-semibold">
+              <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-blue-800">
+                <span className="material-icons">layers</span>
+                Bộ {activeSet}
+              </span>
               <span>
-                Câu {step + 1}/{questions.length} · Điểm tạm: {currentScore}
+                <span className="flex items-center gap-2 px-3 py-2 rounded bg-indigo-100 text-indigo-700">
+                  <span className="material-icons">quiz</span>
+                  Câu {step + 1}/{questions.length}
+                </span>
+                <span className="ml-3 flex items-center gap-2 px-3 py-2 rounded bg-green-100 text-green-700">
+                  <span className="material-icons">star</span>
+                  Điểm: {currentScore}
+                </span>
               </span>
             </div>
-            <h2 className="text-xl font-semibold mb-4">{questions[step].question}</h2>
-            <div className="space-y-3 mb-6">
+            <h2 className="text-2xl font-bold mb-8 text-indigo-800 text-center leading-relaxed">
+              {questions[step].question}
+            </h2>
+            <div className="w-full space-y-5 mb-10">
               {questions[step].options.map((opt, idx) => (
                 <button
                   key={idx}
-                  className={`w-full text-left px-4 py-3 rounded-xl border transition-all duration-200 font-medium ${
-                    selected === idx
-                      ? "bg-blue-100 border-blue-400"
-                      : "bg-white border-gray-200 hover:bg-blue-50"
-                  }`}
+                  className={`w-full text-left px-6 py-5 rounded-2xl border-2 text-lg font-medium shadow-md transition-all duration-200
+                    ${
+                      selected === idx
+                        ? "bg-gradient-to-r from-blue-300 via-purple-200 to-pink-200 border-blue-500 text-blue-900 scale-105"
+                        : "bg-white border-gray-300 hover:bg-blue-50 hover:border-blue-300"
+                    }`}
                   onClick={() => handleOptionClick(idx)}
                 >
                   {opt}
                 </button>
               ))}
             </div>
-            <div className="flex justify-between mt-4">
+            <div className="flex justify-between w-full mt-2">
               <button
-                className="px-6 py-2 bg-gray-100 text-gray-800 rounded-full font-bold border border-gray-300 hover:bg-gray-200 transition-all disabled:opacity-50"
+                className="flex items-center gap-2 px-7 py-3 bg-gray-200 text-gray-800 rounded-xl font-bold border border-gray-400 hover:bg-gray-300 transition-all disabled:opacity-50"
                 onClick={handleBack}
                 disabled={step === 0}
               >
+                <span className="material-icons">arrow_back_ios</span>
                 Back
               </button>
               <button
-                className="px-6 py-2 bg-blue-600 text-white rounded-full font-bold shadow hover:bg-blue-700 transition-all disabled:opacity-50"
+                className="flex items-center gap-2 px-7 py-3 bg-blue-700 text-white rounded-xl font-bold shadow hover:bg-blue-800 transition-all disabled:opacity-50"
                 onClick={handleNext}
                 disabled={selected === null}
               >
-                {step < questions.length - 1 ? "Next" : "Finish"}
+                {step < questions.length - 1 ? (
+                  <>
+                    Next{" "}
+                    <span className="material-icons">arrow_forward_ios</span>
+                  </>
+                ) : (
+                  <>
+                    Finish <span className="material-icons">check_circle</span>
+                  </>
+                )}
               </button>
             </div>
           </div>
         ) : (
-          <div className="w-full max-w-xl bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 rounded-2xl shadow-lg p-8 text-center">
-            <h2 className="text-2xl font-bold mb-4 text-green-700">
+          <div className="w-full max-w-2xl bg-white/90 rounded-3xl shadow-2xl p-12 text-center border border-green-200 flex flex-col items-center">
+            <h2 className="text-4xl font-extrabold mb-8 text-green-700 drop-shadow-lg flex items-center justify-center gap-3">
+              <span className="material-icons text-5xl">emoji_events</span>
               Quiz Completed!
             </h2>
-            <p className="text-lg mb-4">
+            <p className="text-2xl mb-8 font-bold">
               Your score:{" "}
-              <span className="font-bold text-green-600">
+              <span className="text-green-700">
                 {score} / {questions.length}
               </span>
             </p>
             {wrongAnswers.length > 0 ? (
-              <div className="text-left bg-white rounded-xl border border-green-100 p-4 mb-4 max-h-64 overflow-auto">
-                <h3 className="font-semibold text-green-700 mb-2">
+              <div className="text-left bg-white rounded-2xl border border-green-200 p-6 mb-8 max-h-80 overflow-auto shadow w-full">
+                <h3 className="font-semibold text-green-700 mb-4 text-lg flex items-center gap-2">
+                  <span className="material-icons">error_outline</span>
                   Câu trả lời sai ({wrongAnswers.length}):
                 </h3>
-                <ol className="list-decimal ml-5 space-y-2 text-sm text-gray-700">
+                <ol className="list-decimal ml-6 space-y-4 text-base text-gray-800">
                   {wrongAnswers.map((w, i) => (
                     <li key={i}>
                       <div className="font-medium">{w.question}</div>
                       <div>
-                        Chọn: <span className="text-red-600">{w.chosen ?? "(bỏ qua)"}</span>
+                        Chọn:{" "}
+                        <span className="text-red-600">
+                          {w.chosen ?? "(bỏ qua)"}
+                        </span>
                       </div>
                       <div>
-                        Đúng: <span className="text-green-700">{w.correct}</span>
+                        Đúng:{" "}
+                        <span className="text-green-700">{w.correct}</span>
                       </div>
                     </li>
                   ))}
                 </ol>
               </div>
             ) : (
-              <p className="text-green-700 mb-4">Tuyệt vời! Không có câu sai.</p>
+              <p className="text-green-700 mb-8 text-xl font-semibold flex items-center gap-2">
+                <span className="material-icons">celebration</span>
+                Tuyệt vời! Không có câu sai.
+              </p>
             )}
-            <button
-              className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-full font-bold shadow hover:bg-blue-700 transition-all"
-              onClick={() => resetQuiz(activeSet)}
-            >
-              Try Again
-            </button>
+            <div className="flex flex-col gap-4 items-center w-full">
+              <button
+                className="flex items-center gap-2 px-8 py-4 bg-blue-700 text-white rounded-xl font-bold shadow hover:bg-blue-800 transition-all text-lg"
+                onClick={() => resetQuiz(activeSet)}
+              >
+                <span className="material-icons">refresh</span>
+                Try Again
+              </button>
+              <button
+                className="flex items-center gap-2 px-8 py-4 bg-green-500 text-white rounded-xl font-bold shadow hover:bg-green-600 transition-all text-lg"
+                onClick={() => navigate("/learn")}
+              >
+                <span className="material-icons">school</span>
+                Học bài
+              </button>
+            </div>
           </div>
         )}
       </div>
