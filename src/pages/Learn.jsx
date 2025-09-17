@@ -2,8 +2,22 @@ import Layout from "../components/Layout";
 import HeaderHero from "../components/HeaderHero";
 import TOC from "../components/TOC";
 import BackToTop from "../components/BackToTop";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [done, setDone] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <Layout>
       <div>
@@ -250,33 +264,34 @@ function Home() {
                   "dân chủ quân sự", đặc trưng bởi việc nhân dân bầu thủ lĩnh và
                   tham gia quyết định qua "Đại hội nhân dân".
                 </p>
-                <ul className="text-gray-700 space-y-2">
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    Không nhà nước – không giai cấp: Tất cả đều bình đẳng, chưa
-                    có phân biệt giàu nghèo.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    Dân chủ trực tiếp: Mọi thành viên thị tộc/bộ lạc cùng họp
-                    bàn, quyết định vấn đề chung.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    Quyền lực tập thể: Sức mạnh nằm ở cộng đồng, cá nhân phải
-                    gắn liền với lợi ích chung.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    Trưởng lão uy tín, không cai trị: Người đứng đầu chỉ được
-                    kính trọng, không có quyền lực áp đặt.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    Phân phối công bằng: Sản phẩm lao động được chia đều, dựa
-                    trên nhu cầu.
-                  </li>
-                </ul>
+                <details className="ml-2">
+                  <summary className="cursor-pointer font-bold text-blue-700 text-lg py-3 px-4 bg-gradient-to-r from-blue-100 to-cyan-100 rounded-xl mb-3 shadow-md hover:shadow-lg transition-all duration-200 hover:from-blue-200 hover:to-cyan-200">
+                    ✨ 5 yếu tố đặc trưng
+                  </summary>
+
+                  <ul className="list-disc text-gray-700 space-y-2 ml-6">
+                    <li>
+                      Không nhà nước – không giai cấp: Tất cả đều bình đẳng,
+                      chưa có phân biệt giàu nghèo.
+                    </li>
+                    <li>
+                      Dân chủ trực tiếp: Mọi thành viên thị tộc/bộ lạc cùng họp
+                      bàn, quyết định vấn đề chung.
+                    </li>
+                    <li>
+                      Quyền lực tập thể: Sức mạnh nằm ở cộng đồng, cá nhân phải
+                      gắn liền với lợi ích chung.
+                    </li>
+                    <li>
+                      Trưởng lão uy tín, không cai trị: Người đứng đầu chỉ được
+                      kính trọng, không có quyền lực áp đặt.
+                    </li>
+                    <li>
+                      Phân phối công bằng: Sản phẩm lao động được chia đều, dựa
+                      trên nhu cầu.
+                    </li>
+                  </ul>
+                </details>
               </div>
 
               {/* Dân chủ nô lệ */}
@@ -297,7 +312,7 @@ function Home() {
                   <summary className="cursor-pointer font-bold text-purple-700 text-lg py-3 px-4 bg-gradient-to-r from-purple-100 to-violet-100 rounded-xl mb-3 shadow-md hover:shadow-lg transition-all duration-200 hover:from-purple-200 hover:to-violet-200">
                     ✨ 5 yếu tố đặc trưng
                   </summary>
-                  <ul className="list-decimal ml-6 text-gray-700 space-y-2 mt-2">
+                  <ul className="list-disc ml-6 text-gray-700 space-y-2 mt-2">
                     <li>
                       Dân chủ “một nửa”: Chỉ dành cho chủ nô và công dân tự do,
                       tuyệt đối loại trừ nô lệ, phụ nữ, ngoại kiều.
@@ -338,7 +353,7 @@ function Home() {
                   <summary className="cursor-pointer font-bold text-red-700 text-lg py-3 px-4 bg-gradient-to-r from-red-100 to-rose-100 rounded-xl mb-3 shadow-md hover:shadow-lg transition-all duration-200 hover:from-red-200 hover:to-rose-200">
                     ✨ 5 yếu tố đặc trưng
                   </summary>
-                  <ul className="list-decimal ml-6 text-gray-700 space-y-2 mt-2">
+                  <ul className="list-disc ml-6 text-gray-700 space-y-2 mt-2">
                     <li>
                       Quyền lực tuyệt đối: Vua là “thiên tử”, “con trời”, nắm
                       toàn bộ quyền lập pháp, hành pháp, tư pháp.
@@ -384,7 +399,7 @@ function Home() {
                   <summary className="cursor-pointer font-bold text-indigo-700 text-lg py-3 px-4 bg-gradient-to-r from-indigo-100 to-blue-100 rounded-xl mb-3 shadow-md hover:shadow-lg transition-all duration-200 hover:from-indigo-200 hover:to-blue-200">
                     ✨ 5 yếu tố đặc trưng
                   </summary>
-                  <ul className="list-decimal ml-6 text-gray-700 space-y-2 mt-2">
+                  <ul className="list-disc ml-6 text-gray-700 space-y-2 mt-2">
                     <li>
                       Ra đời từ cách mạng: Xuất phát từ những cuộc cách mạng tư
                       sản (Anh thế kỷ XVII, Mỹ 1776, Pháp 1789…) lật đổ chế độ
@@ -428,7 +443,7 @@ function Home() {
                   <summary className="cursor-pointer font-bold text-green-700 text-lg py-3 px-4 bg-gradient-to-r from-green-100 to-emerald-100 rounded-xl mb-3 shadow-md hover:shadow-lg transition-all duration-200 hover:from-green-200 hover:to-emerald-200">
                     ✨ 5 yếu tố đặc trưng
                   </summary>
-                  <ul className="list-decimal ml-6 text-gray-700 space-y-2 mt-2">
+                  <ul className="list-disc ml-6 text-gray-700 space-y-2 mt-2">
                     <li>
                       Ra đời từ cách mạng: Xuất hiện sau các cuộc cách mạng vô
                       sản (điển hình: Cách mạng Tháng Mười Nga 1917).
@@ -668,7 +683,33 @@ function Home() {
             </div>
           </div>
         </div>
-        <BackToTop />
+        {/* Question: Have you finished learning? */}
+        <div className="  flex justify-center my-8">
+          <div className="bg-white rounded-2xl shadow-xl border border-gray-300 px-8 py-6 flex flex-col items-center max-w-md">
+            <div className="mb-2 flex items-center gap-2">
+              <span className="text-xl font-bold text-gray-800">
+                Đã sẵn sàng chuyển sang phần Ôn tập?
+              </span>
+            </div>
+            <div className="mb-4 text-gray-600 text-center">
+              Hãy chắc chắn bạn đã đọc kỹ lý thuyết bên trên.
+              <br />
+              Nếu bạn tự tin, hãy nhấn "Đã học xong" để bắt đầu làm bài ôn tập!
+            </div>
+            <div className="flex gap-4">
+              <button
+                className="bg-green-100 border border-green-400 text-green-700 rounded-[20px] px-6 py-2 font-bold shadow hover:bg-green-200 transition"
+                onClick={() => {
+                  window.location.href = "/quiz";
+                }}
+              >
+                Đã học xong
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {showBackToTop && <BackToTop />}
       </div>
     </Layout>
   );
