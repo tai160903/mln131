@@ -4,10 +4,10 @@ import TOC from "../components/TOC";
 import BackToTop from "../components/BackToTop";
 import React, { useState, useEffect } from "react";
 import nguyenThuy2 from "../assets/images/nguyen-thuy-2.jpg";
-import picture5 from "../assets/images/picture5.jpg";
-import picture7 from "../assets/images/picture7.jpg";
-import picture9 from "../assets/images/picture9.jpg";
-import picture11 from "../assets/images/picture11.jpg";
+import picture5 from "../assets/images/Picture5.jpg";
+import picture7 from "../assets/images/Picture7.jpg";
+import picture9 from "../assets/images/Picture9.jpg";
+import picture11 from "../assets/images/Picture11.jpg";
 
 function Home() {
   const [showBackToTop, setShowBackToTop] = useState(false);
