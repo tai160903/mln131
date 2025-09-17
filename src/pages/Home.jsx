@@ -54,10 +54,7 @@ function Home() {
                 Lý thuyết
               </Link>
             </button>
-            <button
-              className="relative inline-block overflow-hidden rounded-[20px] pointer-events-auto bg-white border border-red-500 text-red-600 text-center text-[18px] py-[18px] px-[32px] font-bold shadow-lg flex items-center justify-center"
-              style={{}}
-            >
+            <button className="relative inline-block overflow-hidden rounded-[20px] pointer-events-auto bg-white border border-red-500 text-red-600 text-center text-[18px] py-[18px] px-[32px] font-bold shadow-lg flex items-center justify-center">
               <Link to="/quiz" className="text-red-600 font-bold">
                 Ôn tập
               </Link>

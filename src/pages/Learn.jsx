@@ -3,12 +3,14 @@ import HeaderHero from "../components/HeaderHero";
 import TOC from "../components/TOC";
 import BackToTop from "../components/BackToTop";
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import nguyenThuy2 from "../assets/images/nguyen-thuy-2.jpg";
+import picture5 from "../assets/images/picture5.jpg";
+import picture7 from "../assets/images/picture7.jpg";
+import picture9 from "../assets/images/picture9.jpg";
+import picture11 from "../assets/images/picture11.jpg";
 
 function Home() {
   const [showBackToTop, setShowBackToTop] = useState(false);
-  const [done, setDone] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -258,6 +260,15 @@ function Home() {
                 <h4 className="text-lg font-bold text-blue-600 mb-3">
                   Dân chủ nguyên thủy:
                 </h4>
+                <div className="flex flex-row gap-4 justify-center items-center mb-4">
+                  <div className="flex flex-col items-center">
+                    <img
+                      src={nguyenThuy2}
+                      alt="Người nguyên thủy"
+                      className="rounded-2xl border border-gray-300 shadow-md object-cover"
+                    />
+                  </div>
+                </div>
                 <p className="text-gray-700 leading-relaxed mb-3">
                   Nhu cầu dân chủ xuất hiện từ sớm trong xã hội tự quản của công
                   xã thị tộc, bộ lạc, dưới hình thức "dân chủ nguyên thủy" hay
@@ -302,6 +313,12 @@ function Home() {
                 <h4 className="text-lg font-bold text-purple-600 mb-3">
                   Dân chủ nô lệ:
                 </h4>
+                <div className="flex flex-col items-center mb-4">
+                  <img
+                    src={picture5}
+                    className="rounded-2xl border border-gray-300 shadow-md object-cover w-[40%] h-[40%]"
+                  />
+                </div>
                 <p className="text-gray-700 leading-relaxed mb-3">
                   Ra đời khi chế độ tư hữu và giai cấp xuất hiện, thay thế dân
                   chủ nguyên thủy. Nền dân chủ này chỉ thực hiện cho thiểu số
@@ -339,12 +356,19 @@ function Home() {
               </div>
               {/* Độc tài chuyên chế phong kiến */}
               <div
-                className="bg-red-50 border-l-4 border-red-400 p-6 mb-6"
+                className="bg-red-50 rounded-xl p-6 border border-red-200 mb-8"
                 id="period-3"
               >
                 <h5 className="text-xl font-semibold text-red-800 mb-3">
                   3. Độc tài chuyên chế phong kiến
                 </h5>
+                <div className="flex flex-col items-center mb-4">
+                  <img
+                    src={picture7}
+                    className="rounded-2xl border border-gray-300 shadow-md object-cover"
+                  />
+                </div>
+
                 <p className="text-gray-700 mb-4">
                   Chế độ dân chủ nô lệ bị xóa bỏ và thay bằng chế độ độc tài
                   chuyên chế phong kiến trong thời kỳ xã hội phong kiến.
@@ -388,6 +412,12 @@ function Home() {
                   <span className="w-8 h-8 bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-full mr-3"></span>
                   Dân chủ tư sản
                 </h5>
+                <div className="flex flex-col items-center mb-4">
+                  <img
+                    src={picture9}
+                    className="rounded-2xl border border-gray-300 shadow-md object-cover"
+                  />
+                </div>
                 <p className="text-gray-700 mb-4">
                   Giai cấp tư sản với tư tưởng tự do, công bằng, dân chủ đã mở
                   đường cho sự ra đời nền dân chủ tư sản vào cuối thế kỷ XIV -
@@ -435,6 +465,12 @@ function Home() {
                   <span className="w-8 h-8 bg-gradient-to-r from-green-500 to-green-600 rounded-full mr-3"></span>
                   Dân chủ vô sản (Dân chủ xã hội chủ nghĩa)
                 </h5>
+                <div className="flex flex-col items-center mb-4">
+                  <img
+                    src={picture11}
+                    className="rounded-2xl border border-gray-300 shadow-md object-cover"
+                  />
+                </div>
                 <p className="text-gray-700 mb-4">
                   Do những hạn chế của dân chủ tư sản, tất yếu xuất hiện một nền
                   dân chủ mới, cao hơn.
