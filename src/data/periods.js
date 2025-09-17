@@ -2,13 +2,13 @@ export const periods = [
   {
     id: "period-1",
     index: 1,
-    title: "Dân chủ nguyên thủy",
+    title: "Chế độ cộng sản nguyên thủy",
     color: "blue",
     introPoints: [
-      "Nhu cầu dân chủ xuất hiện từ sớm trong xã hội tự quản của công xã thị tộc, bộ lạc, dưới hình thức “dân chủ nguyên thủy” hay “dân chủ quân sự”.",
+      "Nhu cầu dân chủ xuất hiện từ sớm trong xã hội tự quản của công xã thị tộc, bộ lạc, dưới hình thức “Chế độ cộng sản nguyên thủy” hay “dân chủ quân sự”.",
       "Đặc trưng bởi việc nhân dân bầu thủ lĩnh và tham gia quyết định thông qua “Đại hội nhân dân”.",
     ],
-    factorsTitle: "5 Yếu tố đặc trưng của Dân chủ nguyên thủy",
+    factorsTitle: "5 Yếu tố đặc trưng của cộng sản nguyên thủy",
     factors: [
       "Không nhà nước – không giai cấp: Tất cả đều bình đẳng, chưa có phân biệt giàu nghèo, chưa tồn tại quyền lực cưỡng chế.",
       "Dân chủ trực tiếp: Mọi thành viên thị tộc/bộ lạc cùng họp bàn, quyết định vấn đề chung.",
@@ -20,13 +20,13 @@ export const periods = [
   {
     id: "period-2",
     index: 2,
-    title: "Dân chủ nô lệ",
+    title: "Chế độ chiểm hữu nô lệ",
     color: "purple",
     introPoints: [
-      "Ra đời khi chế độ tư hữu và giai cấp xuất hiện, thay thế dân chủ nguyên thủy.",
+      "Ra đời khi chế độ tư hữu và giai cấp xuất hiện, thay thế Chế độ cộng sản nguyên thủy.",
       "Nền dân chủ này chỉ thực hiện cho thiểu số (chủ nô và tầng lớp tự do); nô lệ không có quyền tham gia công việc nhà nước.",
     ],
-    factorsTitle: "5 Yếu tố đặc trưng của Dân chủ chủ nô",
+    factorsTitle: "5 Yếu tố đặc trưng của chiểm hữu nô lệ",
     factors: [
       "Dân chủ “một nửa”: Chỉ dành cho chủ nô và công dân tự do, tuyệt đối loại trừ nô lệ, phụ nữ, ngoại kiều.",
       "Dân chủ trực tiếp đầu tiên: Athens là nơi công dân nam trực tiếp tham gia họp bàn, biểu quyết các vấn đề lớn.",
@@ -38,12 +38,12 @@ export const periods = [
   {
     id: "period-3",
     index: 3,
-    title: "Độc tài chuyên chế phong kiến (Sự gián đoạn của dân chủ)",
+    title: "Chế độ phong kiến",
     color: "red",
     introPoints: [
-      "Chế độ dân chủ nô lệ bị xóa bỏ và thay bằng chế độ độc tài chuyên chế phong kiến trong thời kỳ xã hội phong kiến.",
+      "Chế độ Chế độ chiểm hữu nô lệ bị xóa bỏ và thay bằng chế độ Chế độ phong kiến trong thời kỳ xã hội phong kiến.",
     ],
-    factorsTitle: "5 Yếu tố đặc trưng của Độc tài chuyên chế phong kiến",
+    factorsTitle: "5 Yếu tố đặc trưng của phong kiến",
     factors: [
       "Quyền lực tuyệt đối: Vua là “thiên tử”, “con trời”, nắm toàn bộ quyền lập pháp, hành pháp, tư pháp.",
       "Tôn giáo & ý thức hệ: Thường dựa vào tôn giáo/triết học (Nho giáo, Kitô giáo, Hồi giáo…) để củng cố “thiên mệnh” cai trị.",
@@ -55,13 +55,13 @@ export const periods = [
   {
     id: "period-4",
     index: 4,
-    title: "Dân chủ tư sản",
+    title: "Chế độ tư bản chủ nghĩa",
     color: "indigo",
     introPoints: [
-      "Giai cấp tư sản với tư tưởng tự do, công bằng, dân chủ đã mở đường cho sự ra đời nền dân chủ tư sản vào cuối thế kỷ XIV - đầu thế kỷ XV.",
+      "Giai cấp tư sản với tư tưởng tự do, công bằng, dân chủ đã mở đường cho sự ra đời nền Chế độ tư bản chủ nghĩa vào cuối thế kỷ XIV - đầu thế kỷ XV.",
       "Chủ nghĩa Mác - Lênin công nhận đây là một bước tiến lớn nhưng thực tế vẫn là nền dân chủ của thiểu số do dựa trên chế độ tư hữu về tư liệu sản xuất.",
     ],
-    factorsTitle: "5 Yếu tố đặc trưng của Dân chủ tư sản",
+    factorsTitle: "5 Yếu tố đặc trưng của tư bản chủ nghĩa",
     factors: [
       "Ra đời từ cách mạng: Xuất phát từ những cuộc cách mạng tư sản (Anh thế kỷ XVII, Mỹ 1776, Pháp 1789…) lật đổ chế độ phong kiến.",
       "Nguyên tắc pháp quyền: Nhà nước tổ chức theo Hiến pháp, thực hiện nguyên tắc tam quyền phân lập (lập pháp – hành pháp – tư pháp).",
@@ -74,7 +74,7 @@ export const periods = [
 
 export const socialistFactors = {
   introPoints: [
-    "Do những hạn chế của dân chủ tư sản, tất yếu xuất hiện một nền dân chủ mới, cao hơn.",
+    "Do những hạn chế của Chế độ tư bản chủ nghĩa, tất yếu xuất hiện một nền dân chủ mới, cao hơn.",
     "Dân chủ xã hội chủ nghĩa bắt đầu phôi thai từ Công xã Pari (1871) nhưng được xác lập chính thức với Cách mạng Tháng Mười Nga năm 1917 và sự ra đời của nhà nước xã hội chủ nghĩa đầu tiên.",
     "Đây là một bước phát triển mới về chất của dân chủ, kế thừa và phát triển các giá trị dân chủ trước đó.",
   ],

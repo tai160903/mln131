@@ -1,5 +1,6 @@
 import React from "react";
 import PeriodCard from "./PeriodCard";
+import TOC from "./TOC";
 import { periods, socialistFactors } from "../data/periods";
 
 function HistorySection() {
@@ -12,7 +13,7 @@ function HistorySection() {
         <span className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">
           b
         </span>
-        II. Sự ra đời và Phát triển của Dân chủ qua các thời kỳ lịch sử
+        Sự ra đời, phát triển của dân chủ
       </h4>
 
       <div className="space-y-8">
@@ -32,7 +33,7 @@ function HistorySection() {
               className="text-xl font-semibold text-gray-800"
               id="section-iii"
             >
-              III. Dân chủ vô sản (Dân chủ xã hội chủ nghĩa)
+              Chế độ tư bản chủ nghĩa
             </h5>
           </div>
           <div className="ml-14 space-y-4">
@@ -48,7 +49,7 @@ function HistorySection() {
             </div>
             <details className="bg-green-100 p-4 rounded-lg">
               <summary className="font-semibold text-green-800 mb-3 cursor-pointer select-none">
-                5 Yếu tố đặc trưng của Dân chủ vô sản (XHCN)
+                5 Yếu tố đặc trưng của Chế độ tư bản chủ nghĩa (XHCN)
               </summary>
               <ol className="mt-3 space-y-2">
                 {socialistFactors.factors.map((f, i) => (
