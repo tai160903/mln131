@@ -1,3 +1,13 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowRight,
+  faArrowLeft,
+  faCircleCheck,
+  faRotateRight,
+  faXmark,
+  faBook,
+  faGraduationCap,
+} from "@fortawesome/free-solid-svg-icons";
 import Layout from "../components/Layout";
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -627,13 +637,6 @@ function Quiz() {
     }
   };
 
-  const currentScore = useMemo(() => {
-    return questions.reduce(
-      (acc, q, i) => (selections[i] === q.answer ? acc + 1 : acc),
-      0
-    );
-  }, [selections, questions]);
-
   return (
     <Layout>
       <div className="flex flex-col items-center justify-center min-h-[80vh] bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
@@ -681,17 +684,11 @@ function Quiz() {
           <div className="w-full max-w-2xl bg-white/80 rounded-3xl shadow-2xl p-12 border border-blue-200 flex flex-col items-center">
             <div className="flex items-center justify-between w-full mb-6 text-lg text-gray-700 font-semibold">
               <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-blue-800">
-                <span className="material-icons">layers</span>
                 Bộ {activeSet}
               </span>
               <span>
                 <span className="flex items-center gap-2 px-3 py-2 rounded bg-indigo-100 text-indigo-700">
-                  <span className="material-icons">quiz</span>
                   Câu {step + 1}/{questions.length}
-                </span>
-                <span className="ml-3 flex items-center gap-2 px-3 py-2 rounded bg-green-100 text-green-700">
-                  <span className="material-icons">star</span>
-                  Điểm: {currentScore}
                 </span>
               </span>
             </div>
@@ -720,7 +717,7 @@ function Quiz() {
                 onClick={handleBack}
                 disabled={step === 0}
               >
-                <span className="material-icons">arrow_back_ios</span>
+                <FontAwesomeIcon icon={faArrowLeft} />
                 Back
               </button>
               <button
@@ -730,12 +727,12 @@ function Quiz() {
               >
                 {step < questions.length - 1 ? (
                   <>
-                    Next{" "}
-                    <span className="material-icons">arrow_forward_ios</span>
+                    Next
+                    <FontAwesomeIcon icon={faArrowRight} />
                   </>
                 ) : (
                   <>
-                    Finish <span className="material-icons">check_circle</span>
+                    Finish <FontAwesomeIcon icon={faCircleCheck} />
                   </>
                 )}
               </button>
@@ -744,7 +741,6 @@ function Quiz() {
         ) : (
           <div className="w-full max-w-2xl bg-white/90 rounded-3xl shadow-2xl p-12 text-center border border-green-200 flex flex-col items-center">
             <h2 className="text-4xl font-extrabold mb-8 text-green-700 drop-shadow-lg flex items-center justify-center gap-3">
-              <span className="material-icons text-5xl">emoji_events</span>
               Quiz Completed!
             </h2>
             <p className="text-2xl mb-8 font-bold">
@@ -755,8 +751,8 @@ function Quiz() {
             </p>
             {wrongAnswers.length > 0 ? (
               <div className="text-left bg-white rounded-2xl border border-green-200 p-6 mb-8 max-h-80 overflow-auto shadow w-full">
-                <h3 className="font-semibold text-green-700 mb-4 text-lg flex items-center gap-2">
-                  <span className="material-icons">error_outline</span>
+                <h3 className="font-semibold text-red-700 mb-4 text-lg flex items-center gap-2">
+                  <FontAwesomeIcon icon={faXmark} />
                   Câu trả lời sai ({wrongAnswers.length}):
                 </h3>
                 <ol className="list-decimal ml-6 space-y-4 text-base text-gray-800">
@@ -779,7 +775,7 @@ function Quiz() {
               </div>
             ) : (
               <p className="text-green-700 mb-8 text-xl font-semibold flex items-center gap-2">
-                <span className="material-icons">celebration</span>
+                <FontAwesomeIcon icon={faGraduationCap} />
                 Tuyệt vời! Không có câu sai.
               </p>
             )}
@@ -788,14 +784,14 @@ function Quiz() {
                 className="flex items-center gap-2 px-8 py-4 bg-blue-700 text-white rounded-xl font-bold shadow hover:bg-blue-800 transition-all text-lg"
                 onClick={() => resetQuiz(activeSet)}
               >
-                <span className="material-icons">refresh</span>
+                <FontAwesomeIcon icon={faRotateRight} />
                 Try Again
               </button>
               <button
                 className="flex items-center gap-2 px-8 py-4 bg-green-500 text-white rounded-xl font-bold shadow hover:bg-green-600 transition-all text-lg"
                 onClick={() => navigate("/learn")}
               >
-                <span className="material-icons">school</span>
+                <FontAwesomeIcon icon={faBook} />
                 Học bài
               </button>
             </div>

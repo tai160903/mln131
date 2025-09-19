@@ -8,9 +8,11 @@ import picture5 from "../assets/images/Picture5.jpg";
 import picture7 from "../assets/images/Picture7.jpg";
 import picture9 from "../assets/images/Picture9.jpg";
 import picture11 from "../assets/images/Picture11.jpg";
+import { useNavigate } from "react-router-dom";
 
-function Home() {
+function Learn() {
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -736,7 +738,7 @@ function Home() {
               <button
                 className="bg-green-100 border border-green-400 text-green-700 rounded-[20px] px-6 py-2 font-bold shadow hover:bg-green-200 transition"
                 onClick={() => {
-                  window.location.href = "/quiz";
+                  navigate("/quiz");
                 }}
               >
                 Đã học xong
@@ -751,4 +753,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Learn;

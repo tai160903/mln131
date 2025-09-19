@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 
 function HeaderHero({ title, subtitle, badge }) {
@@ -17,7 +16,7 @@ function HeaderHero({ title, subtitle, badge }) {
     >
       <button
         onClick={() => {
-          window.location.href = "/";
+          navigate("/");
         }}
         className="absolute top-8 left-8 z-30 bg-white bg-opacity-80 text-gray-800 px-5 py-2 rounded-full shadow hover:bg-opacity-100 transition font-semibold"
       >
